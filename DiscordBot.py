@@ -58,6 +58,14 @@ async def test(ctx, *, msg):
     await bot.send_message(ctx.message.channel, "{} said: ".format(ctx.message.author) + msg, tts=True)
 
 
+@bot.command(pass_context=True, name = "status")
+async def get_user_status(ctx, member:discord.Member = None):
+    user = ctx.message.author if not member else member
+    status = user.status
+    game = user.game
+    name = user.display_name
+    await bot.say("```{}: {}\nPlaying: {}```".format(name,status,game))
+
 @bot.command(pass_context=True, name="kick")
 @commands.has_permissions(kick_members=True)
 async def kick_user(ctx, member: discord.Member):

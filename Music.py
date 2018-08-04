@@ -39,7 +39,6 @@ class VoiceState:
         return self.current.player
 
     def skip(self):
-        self.skip_votes.clear()
         if self.is_playing():
             self.player.stop()
 
@@ -106,7 +105,7 @@ class Music:
 
         return True
 
-    @commands.command(pass_context=True, aliases=["play","p"])
+    @commands.command(pass_context=True, aliases=["play", "pl"])
     async def play_music(self, ctx, *, args=None):
         user = ctx.message.author
         channel = user.voice_channel
